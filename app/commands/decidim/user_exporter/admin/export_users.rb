@@ -23,7 +23,7 @@ module Decidim
         attr_reader :current_user, :format
 
         def export_data
-          format = format || "JSON"
+          format ||= "JSON"
           Decidim.traceability.perform_action!(
             :export_users,
             current_organization,

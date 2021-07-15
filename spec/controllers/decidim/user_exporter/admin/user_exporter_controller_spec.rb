@@ -24,9 +24,11 @@ module Decidim
               expect(subject.status).to eq 200
             end
           end
+
           context "when user is not admin" do
-            let(:current_user) { create :user, :confirmed, organization: organization }
             subject { get :export_users, params: { format: "JSON" } }
+
+            let(:current_user) { create :user, :confirmed, organization: organization }
 
             it "user is redirected because of permissions" do
               expect(subject.status).to eq 302
