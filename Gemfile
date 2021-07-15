@@ -17,7 +17,6 @@ gem "faker", "~> 1.9"
 
 group :development, :test do
   gem "byebug", "~> 11.0", platform: :mri
-  gem "simplecov", "~> 0.19.0"
 
   gem "decidim-dev", DECIDIM_VERSION
 end

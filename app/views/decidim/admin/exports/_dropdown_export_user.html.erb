@@ -1,10 +1,9 @@
-<span class="exports dropdown tiny button button--simple" data-toggle="export-dropdown"><%= t "actions.export", scope: "decidim.admin" %></span>
+<span class="exports dropdown tiny button button--simple" id="export_dropdown_users" data-toggle="export-dropdown"><%= t "actions.export", scope: "decidim.admin" %></span>
 <div class="dropdown-pane" id="export-dropdown" data-dropdown data-position=bottom data-alignment=right data-auto-focus="true" data-close-on-click="true">
   <ul class="vertical menu add-components">
       <% Decidim::UserExporter::AdminEngine::DEFAULT_EXPORT_FORMATS.each do |format| %>
         <li class="exports--format--<%= format.downcase %> exports--<%= format %>">
-          <% byebug %>
-          <%= link_to t("decidim.admin.exports.export_as", name: t("decidim.user_exporter.admin.exports.users"), export_format: t("decidim.admin.exports.formats.#{format}")), AdminEngine.routes.url_helpers.user_exporter_export_users_path %>
+          <%= link_to t("decidim.admin.exports.export_as", name: t("decidim.user_exporter.admin.exports.users"), export_format: t("decidim.admin.exports.formats.#{format}")), decidim.decidim_user_exporter_path %>
         </li>
       <% end %>
   </ul>

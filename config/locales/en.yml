@@ -1,6 +1,10 @@
 ---
 en:
   decidim:
+    user_exporter:
+      admin:
+        exports:
+          users: Users
     components:
       user_exporter:
         name: UserExporter
