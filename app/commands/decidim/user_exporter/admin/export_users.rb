@@ -16,6 +16,8 @@ module Decidim
         # Broadcasts :ok if successful, :invalid otherwise.
         def call
           broadcast(:ok, export_data)
+        rescue StandardError
+          broadcast(:invalid)
         end
 
         private
@@ -23,7 +25,6 @@ module Decidim
         attr_reader :current_user, :format
 
         def export_data
-          format ||= "JSON"
           Decidim.traceability.perform_action!(
             :export_users,
             current_organization,

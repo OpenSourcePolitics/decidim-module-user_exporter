@@ -3,7 +3,7 @@
   <ul class="vertical menu add-components">
       <% Decidim::UserExporter::AdminEngine::DEFAULT_EXPORT_FORMATS.each do |format| %>
         <li class="exports--format--<%= format.downcase %> exports--<%= format %>">
-          <%= link_to t("decidim.admin.exports.export_as", name: t("decidim.user_exporter.admin.exports.users"), export_format: t("decidim.admin.exports.formats.#{format}")), decidim.decidim_user_exporter_path %>
+          <%= link_to t("decidim.admin.exports.export_as", name: t("decidim.user_exporter.admin.exports.users"), export_format: t("decidim.admin.exports.formats.#{format}")), decidim.decidim_user_exporter_path(format: format) %>
         </li>
       <% end %>
   </ul>

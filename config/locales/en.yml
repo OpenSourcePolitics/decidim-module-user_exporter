@@ -3,6 +3,9 @@ en:
   decidim:
     user_exporter:
       admin:
+        user_exporter:
+          export_users:
+            error: an error has occured
         exports:
           users: Users
     components:

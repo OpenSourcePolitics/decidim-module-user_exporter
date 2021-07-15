@@ -11,6 +11,9 @@ module Decidim
             on(:ok) do |export_data|
               send_data export_data.read, type: "text/#{export_data.extension}", filename: export_data.filename("participants")
             end
+            on(:invalid) do
+              flash.now[:alert] = t(".error")
+            end
           end
         end
       end
