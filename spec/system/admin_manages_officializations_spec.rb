@@ -55,31 +55,24 @@ describe "Admin manages officializations", type: :system do
       end
     end
 
-    it "exports a CSV" do
-      find(".exports.dropdown").click
-      perform_enqueued_jobs { click_link "Users as CSV" }
+    shared_examples_for "exports a" do |format, extension|
+      it "exports a #{format}" do
+        find(".exports.dropdown").click
+        perform_enqueued_jobs { click_link "Users as #{format}" }
 
-      within ".callout.success" do
-        expect(page).to have_content("in progress")
+        within ".callout.success" do
+          expect(page).to have_content("in progress")
+        end
+
+        expect(last_email.subject).to include("users", extension)
+        expect(last_email.attachments.length).to be_positive
+        expect(last_email.attachments.first.filename).to match(/^users.*\.zip$/)
       end
-
-      expect(last_email.subject).to include("users", "csv")
-      expect(last_email.attachments.length).to be_positive
-      expect(last_email.attachments.first.filename).to match(/^users.*\.zip$/)
     end
 
-    it "exports a JSON" do
-      find(".exports.dropdown").click
-      perform_enqueued_jobs { click_link "Users as JSON" }
-
-      within ".callout.success" do
-        expect(page).to have_content("in progress")
-      end
-
-      expect(last_email.subject).to include("users", "json")
-      expect(last_email.attachments.length).to be_positive
-      expect(last_email.attachments.first.filename).to match(/^users.*\.zip$/)
-    end
+    it_behaves_like "exports a", "CSV", "csv"
+    it_behaves_like "exports a", "JSON", "json"
+    it_behaves_like "exports a", "Excel", "xls"
   end
 
   describe "officializating users" do

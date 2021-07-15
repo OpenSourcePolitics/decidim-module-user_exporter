@@ -10,11 +10,14 @@ module Decidim
           ExportUsers.call(params[:format], current_user) do
             on(:ok) do |export_data|
               ExportUsersJob.perform_now current_user, "users", export_data
+              flash[:notice] = t("notice", scope: "decidim.admin.exports")
             end
             on(:invalid) do
-              flash.now[:alert] = t(".error")
+              flash[:alert] = t(".error")
             end
           end
+
+          redirect_back(fallback_location: decidim_admin.officializations_path)
         end
       end
     end
