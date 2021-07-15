@@ -9,7 +9,7 @@ module Decidim
 
           ExportUsers.call(params[:format], current_user) do
             on(:ok) do |export_data|
-              send_data export_data.read, type: "text/#{export_data.extension}", filename: export_data.filename("participants")
+              ExportUsersJob.perform_now current_user, "users", export_data
             end
             on(:invalid) do
               flash.now[:alert] = t(".error")
