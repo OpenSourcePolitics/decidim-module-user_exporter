@@ -7,13 +7,13 @@ module Decidim
       # Public: Exports a hash with the serialized data for the user including
       # extra user fields
       def serialize
-        super.merge(extra_user_fields)
+        super.merge(extra_fields)
       end
 
-      def extra_user_fields
+      def extra_fields
         extended_data = resource.extended_data.symbolize_keys
 
-        [:gender, :country, :postal_code, :date_of_birth].each_with_object({}) do |key, fields|
+        Decidim::UserExporter.export_user_fields.each_with_object({}) do |key, fields|
           fields[key] = extended_data[key]
         end
       end

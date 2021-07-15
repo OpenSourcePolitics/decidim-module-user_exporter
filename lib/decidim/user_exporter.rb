@@ -4,10 +4,17 @@ require "decidim/user_exporter/admin"
 require "decidim/user_exporter/engine"
 require "decidim/user_exporter/admin_engine"
 require "decidim/user_exporter/component"
+require "active_support/configurable"
 
 module Decidim
   # This namespace holds the logic of the `UserExporter` component. This component
   # allows users to create user_exporter in a participatory space.
   module UserExporter
+    include ActiveSupport::Configurable
+
+    # Define extra keys to export from 'extended_data' jsonb column
+    config_accessor :export_user_fields do
+      [:country, :postal_code]
+    end
   end
 end
