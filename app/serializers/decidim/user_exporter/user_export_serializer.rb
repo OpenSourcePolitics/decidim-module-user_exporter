@@ -13,7 +13,7 @@ module Decidim
       def extra_fields
         extended_data = resource.extended_data.symbolize_keys
 
-        Decidim::UserExporter.export_user_fields&.each_with_object({}) do |key, fields|
+        Decidim.export_user_fields&.each_with_object({}) do |key, fields|
           fields[key] = extended_data[key]
         end
       end

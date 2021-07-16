@@ -6,8 +6,6 @@ module Decidim
     class AdminEngine < ::Rails::Engine
       isolate_namespace Decidim::UserExporter::Admin
 
-      DEFAULT_EXPORT_FORMATS = %w(CSV JSON Excel).freeze
-
       paths["db/migrate"] = nil
       paths["lib/tasks"] = nil
 
