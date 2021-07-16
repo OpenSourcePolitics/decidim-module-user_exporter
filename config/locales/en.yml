@@ -1,10 +1,14 @@
 ---
 en:
   decidim:
+    admin_log:
+      user:
+        export_users: "%{user_name} has exported users"
     user_exporter:
       admin:
         user_exporter:
           export_users:
+            admin_log: has exported participants
             error: an error has occured
         exports:
           users: Users

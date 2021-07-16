@@ -19,7 +19,7 @@ FactoryBot.modify do
     confirmation_sent_at { Time.current }
     accepted_tos_version { organization.tos_version }
     email_on_notification { true }
-    extended_data { { postal_code: Faker::Address.zip_code, extra_id: Faker::Lorem.characters(number: 12) } }
+    extended_data { {} }
 
     trait :confirmed do
       confirmed_at { Time.current }

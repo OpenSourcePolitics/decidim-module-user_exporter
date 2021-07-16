@@ -27,8 +27,11 @@ module Decidim
         def export_data
           Decidim.traceability.perform_action!(
             :export_users,
-            current_organization,
-            current_user
+            current_user,
+            current_user,
+            resource: {
+              title: "okokokoko"
+            }
           ) do
             Decidim::Exporters
               .find_exporter(format)
