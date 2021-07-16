@@ -4,7 +4,17 @@ base_locale: en
 locales: [en]
 
 ignore_unused:
-  - "decidim.components.user_exporter.name"
+  - decidim.components.user_exporter.name
+  - decidim.admin_log.user.export_users
+  - faker.address.country_code
 
 ignore_missing:
   - decidim.participatory_processes.scopes.global
+  - decidim.admin.exports.*
+  - decidim.admin.exports.actions.*
+  - decidim.admin.officializations.index.*
+  - decidim.contact
+  - decidim.admin.actions.export
+  - decidim.admin.titles.participants
+  - decidim.user_exporter.admin.user_exporter.export_users.error
+  - decidim.user_exporter.admin.user_exporter.exports.users

@@ -1,5 +1,5 @@
 ---
-en:
+fr:
   decidim:
     admin_log:
       user:
@@ -11,20 +11,7 @@ en:
       admin:
         exports:
           users: Users
-        user_exporter:
-          export_users:
-            error: an error has occured
   faker:
     address:
-      country_code:
-      - FR
-      - FR0
-      - FR1
-      - FR2
-      - FR3
-      - FR4
-      - FR5
-      - FR6
-      - FR7
-      - FR8
-      - FR9
+      country_code: '["FR", "FR0", "FR1", "FR2", "FR3", "FR4", "FR5", "FR6", "FR7",
+        "FR8", "FR9"]'
