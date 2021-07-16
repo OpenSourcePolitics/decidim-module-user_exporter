@@ -50,17 +50,13 @@ jobs:
         with:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
-      - name: Create db
-        run: |
-          bundle exec rails db:create
-          bundle exec rails db:migrate
-      - run: mkdir -p ./spec/tmp/screenshots
+      - run: bundle exec rake test_app
+        name: Create test app
+      - run: mkdir -p ./spec/decidim_dummy_app/tmp/screenshots
         name: Create the screenshots folder
       - uses: nanasess/setup-chromedriver@v1.0.1
-      - run: bundle exec rspec
+      - run: bundle exec rake
         name: RSpec
-      - run: ./.github/upload_coverage.sh $DECIDIM_MODULE $GITHUB_EVENT_PATH
-        name: Upload coverage
       - uses: actions/upload-artifact@v2-preview
         if: always()
         with:
