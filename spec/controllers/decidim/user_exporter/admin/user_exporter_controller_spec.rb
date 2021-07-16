@@ -21,10 +21,19 @@ module Decidim
             subject { get :export_users, params: { format: "JSON" } }
 
             it "send data and returns 200 status code" do
-              expect(subject).to have_http_status(:ok)
+              expect(subject).to have_http_status(:redirect)
             end
 
             it "send email with export" do
+              expect do
+                perform_enqueued_jobs { subject }
+              end.to change(emails, :count)
+            end
+
+            it "logs the export in admin panel" do
+              expect do
+                perform_enqueued_jobs { subject }
+              end.to change(Decidim::ActionLog, :count)
             end
           end
 
@@ -34,7 +43,7 @@ module Decidim
             let(:current_user) { create :user, :confirmed, organization: organization }
 
             it "user is redirected because of permissions" do
-              expect(subject).to have_http_status(302)
+              expect(subject).to have_http_status(:redirect)
             end
           end
 
@@ -43,7 +52,7 @@ module Decidim
               subject { get :export_users, params: { format: format } }
 
               it "returns a 200 status code" do
-                expect(subject).to have_http_status(:ok)
+                expect(subject).to have_http_status(:redirect)
               end
             end
 
