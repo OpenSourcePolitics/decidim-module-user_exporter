@@ -41,11 +41,18 @@ module Decidim
       end
 
       def extra_fields
-        extended_data = resource.extended_data.symbolize_keys
+        extended_data = resource.send(resource_extended_data).symbolize_keys
 
         Decidim.export_user_fields&.each_with_object({}) do |key, fields|
           fields[key] = extended_data[key]
         end
+      rescue NoMethodError
+        {}
+      end
+
+      # Allows to define the column name in database, default : :extended_data
+      def resource_extended_data
+        Decidim.extended_data_column
       end
     end
   end

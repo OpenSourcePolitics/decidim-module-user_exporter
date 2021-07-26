@@ -31,6 +31,9 @@ In your `config/initializers/decidim.rb`, add following config
 
 ```
 Decidim.configure do |config|
+  # Allows to define the column name in database, default : :extended_data
+  config.extended_data_column = :metadata
+
   # Update fields to export from column extended_data : Default - [:country, :postal_code]
   config.export_user_fields = [:country, :postal_code]
 
