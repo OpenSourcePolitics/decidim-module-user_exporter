@@ -514,6 +514,8 @@ GEM
     nobspw (0.6.2)
     nokogiri (1.11.7-x86_64-darwin)
       racc (~> 1.4)
+    nokogiri (1.11.7-x86_64-linux)
+      racc (~> 1.4)
     oauth (0.5.6)
     oauth2 (1.4.7)
       faraday (>= 0.8, < 2.0)
@@ -777,7 +779,9 @@ GEM
       nokogiri (~> 1.8)
 
 PLATFORMS
+  x86_64-darwin-18
   x86_64-darwin-19
+  x86_64-linux
 
 DEPENDENCIES
   bootsnap (~> 1.4)
@@ -789,14 +793,13 @@ DEPENDENCIES
   letter_opener_web (~> 1.3)
   listen (~> 3.1)
   puma (~> 4.3.7)
-  simplecov (~> 0.19.0)
   spring (~> 2.0)
   spring-watcher-listen (~> 2.0)
   uglifier (~> 4.1)
   web-console (~> 3.5)
 
 RUBY VERSION
-   ruby 2.7.1p83
+   ruby 2.6.5p114
 
 BUNDLED WITH
    2.2.23

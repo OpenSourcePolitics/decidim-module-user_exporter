@@ -21,6 +21,24 @@ And then execute:
 bundle
 ```
 
+## Configure
+
+By default, fields to export from `extended_data` are defined, same for the export format
+
+You can redefine those options as following:
+
+In your `config/initializers/decidim.rb`, add following config
+
+```
+Decidim.configure do |config|
+  # Update fields to export from column extended_data : Default - [:country, :postal_code]
+  config.export_user_fields = [:country, :postal_code]
+
+  # Change the export format list : Default - %w(CSV JSON Excel)
+  config.export_users_formats = %w(CSV).freeze
+end
+```
+
 ## Contributing
 
 See [Decidim](https://github.com/decidim/decidim).
