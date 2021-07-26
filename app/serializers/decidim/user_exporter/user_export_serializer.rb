@@ -44,7 +44,11 @@ module Decidim
         extended_data = resource.send(resource_extended_data).symbolize_keys
 
         Decidim.export_user_fields&.each_with_object({}) do |key, fields|
-          fields[key] = extended_data[key]
+          fields[key] = if extended_data.blank?
+                          ""
+                        else
+                          extended_data[key]
+                        end
         end
       rescue NoMethodError
         {}
