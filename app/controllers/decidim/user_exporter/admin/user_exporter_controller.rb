@@ -8,8 +8,7 @@ module Decidim
           enforce_permission_to :read, :officialization
 
           ExportUsers.call(params[:format], current_user) do
-            on(:ok) do |export_data|
-              ExportUsersJob.perform_now current_user, "users", export_data
+            on(:ok) do
               flash[:notice] = t("notice", scope: "decidim.admin.exports")
             end
             on(:invalid) do

@@ -15,7 +15,9 @@ module Decidim
         #
         # Broadcasts :ok if successful, :invalid otherwise.
         def call
-          broadcast(:ok, export_data)
+          send_export_mail
+
+          broadcast(:ok)
         rescue StandardError
           broadcast(:invalid)
         end
@@ -24,14 +26,15 @@ module Decidim
 
         attr_reader :current_user, :format
 
+        def send_export_mail
+          ExportMailer.export(current_user, "users", export_data).deliver_now
+        end
+
         def export_data
           Decidim.traceability.perform_action!(
             :export_users,
             current_user,
-            current_user,
-            resource: {
-              title: "okokokoko"
-            }
+            current_user
           ) do
             Decidim::Exporters
               .find_exporter(format)

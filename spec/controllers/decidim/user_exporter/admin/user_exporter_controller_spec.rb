@@ -20,7 +20,7 @@ module Decidim
           context "when user is admin" do
             subject { get :export_users, params: { format: "JSON" } }
 
-            it "send data and returns 200 status code" do
+            it "send data and redirects back" do
               expect(subject).to have_http_status(:redirect)
             end
 
