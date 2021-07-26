@@ -12,15 +12,14 @@ module Decidim
     #    view_helpers # => this comes from the views
     #    UserPresenter.new(action_log, view_helpers).present
     class UserPresenter < Decidim::Log::BasePresenter
+      ACTION_STRING = %w(grant_id_documents_offline_verification invite officialize remove_from_admin show_email unofficialize export_users).freeze
+
       private
 
       def action_string
-        case action
-        when "grant_id_documents_offline_verification", "invite", "officialize", "remove_from_admin", "show_email", "unofficialize", "export_users"
-          "decidim.admin_log.user.#{action}"
-        else
-          super
-        end
+        return super unless ACTION_STRING.include? action
+
+        "decidim.admin_log.user.#{action}"
       end
 
       def i18n_params
