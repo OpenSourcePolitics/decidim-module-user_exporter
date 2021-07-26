@@ -170,6 +170,15 @@ module Decidim
             expect(serialized).to include(extra_id: "aze1rty2uio3p4")
             expect(serialized).to include(postal_code: "75002")
           end
+
+          context "when extended data is nil" do
+            let(:extended_data) { nil }
+
+            it "exports fields from extended data" do
+              expect(serialized).to include(extra_id: "")
+              expect(serialized).to include(postal_code: "")
+            end
+          end
         end
       end
     end

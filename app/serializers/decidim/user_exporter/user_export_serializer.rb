@@ -41,7 +41,7 @@ module Decidim
       end
 
       def extra_fields
-        extended_data = resource.send(resource_extended_data).symbolize_keys
+        extended_data = resource.send(resource_extended_data)&.symbolize_keys
 
         Decidim.export_user_fields&.each_with_object({}) do |key, fields|
           fields[key] = if extended_data.blank?
